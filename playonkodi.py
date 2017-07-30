@@ -7,9 +7,6 @@ import time
 import argparse
 import sys
 
-KODI_HOST = '127.0.0.1'
-KODI_PORT = 8050
-
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -20,6 +17,18 @@ def parse_args():
         metavar='MEDIA',
         type=str,
         help='path to file containing media')
+    parser.add_argument(
+        '-s',
+        '--server',
+        default='127.0.0.1',
+        type=str,
+        help="kodi's local ip address")
+    parser.add_argument(
+        '-p',
+        '--port',
+        default=8080,
+        type=int,
+        help="kodi's web interface port")
     return parser
 
 
@@ -38,9 +47,9 @@ def parse_filepath(filepath):
     return (filename, directory)
 
 
-def kodi_post(network_file, KODI_HOST, KODI_PORT):
+def kodi_post(network_file, server, port):
     data = '{"id":529,"jsonrpc":"2.0","method":"Player.Open","params":{"item":{"file":"' + network_file + '"}}}'
-    response = requests.post('http://{0}:{1}/jsonrpc'.format(KODI_HOST, KODI_PORT), data=data)
+    response = requests.post('http://{0}:{1}/jsonrpc'.format(server, port), data=data)
     return response
 
 
@@ -53,19 +62,19 @@ def command_line():
     args = parser.parse_args(raw_args)
 
     filepath = args.media
+    server = args.server
+    port = args.port
 
     if '://' in filepath:
-        response = kodi_post(filepath, KODI_HOST, KODI_PORT)
+        response = kodi_post(filepath, server, port)
         print(response.text)
     else:
         filename, directory = parse_filepath(filepath)
 
         directory = os.path.join(os.getcwd(), directory)
-        server_path = os.path.join(sys.path[0], 'server.py')
-        cwd = os.getcwd()
-        print(server_path)
-        command = ['python', server_path, directory, local_port, cwd]
-        server = subprocess.Popen(
+        server_path = os.path.join(sys.path[0], 'server', 'server.py')
+        command = ['python', server_path, directory, local_port]
+        server_cmd = subprocess.Popen(
                       command,
                       shell=False,
                       stdout=subprocess.PIPE,
@@ -76,16 +85,16 @@ def command_line():
 
         time.sleep(2)
 
-        response = kodi_post(network_file, KODI_HOST, KODI_PORT)
+        response = kodi_post(network_file, server, port)
         print(response.text)
 
         print('\nHit CTRL+C to kill the stream webserver')
 
         try:
-            while server.poll() is None:
+            while server_cmd.poll() is None:
                 time.sleep(1)
         except KeyboardInterrupt:
-            server.terminate()
+            server_cmd.terminate()
             raise
 
 
