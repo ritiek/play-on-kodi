@@ -60,11 +60,7 @@ def command_line():
     else:
         filename, directory = parse_filepath(filepath)
 
-        directory = os.path.join(os.getcwd(), directory)
-        server_path = os.path.join(sys.path[0], 'server.py')
-        cwd = os.getcwd()
-        print(server_path)
-        command = ['python', server_path, directory, local_port, cwd]
+        command = ['python', 'server.py', directory, local_port]
         server = subprocess.Popen(
                       command,
                       shell=False,

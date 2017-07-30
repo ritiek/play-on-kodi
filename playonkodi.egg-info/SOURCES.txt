@@ -1,0 +1,11 @@
+README.rst
+setup.py
+playonkodi/__init__.py
+playonkodi/playonkodi.py
+playonkodi/server.py
+playonkodi.egg-info/PKG-INFO
+playonkodi.egg-info/SOURCES.txt
+playonkodi.egg-info/dependency_links.txt
+playonkodi.egg-info/entry_points.txt
+playonkodi.egg-info/requires.txt
+playonkodi.egg-info/top_level.txt

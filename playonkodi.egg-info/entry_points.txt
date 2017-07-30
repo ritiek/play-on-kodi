@@ -1,0 +1,3 @@
+[console_scripts]
+playonkodi = playonkodi.playonkodi:command_line
+
