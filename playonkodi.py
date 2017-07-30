@@ -54,9 +54,6 @@ def kodi_post(network_file, server, port):
 
 
 def command_line():
-    local_ip = get_local_ip()
-    local_port = str(random.randint(45000, 50000))
-
     parser = parse_args()
     raw_args = sys.argv[1:]
     args = parser.parse_args(raw_args)
@@ -69,10 +66,17 @@ def command_line():
         response = kodi_post(filepath, server, port)
         print(response.text)
     else:
-        filename, directory = parse_filepath(filepath)
+        if not os.path.isfile(filepath):
+            print('could not locate local media: ' + filepath)
+            sys.exit(1)
 
+        filename, directory = parse_filepath(filepath)
         directory = os.path.join(os.getcwd(), directory)
         server_path = os.path.join(sys.path[0], 'server', 'server.py')
+
+        local_ip = get_local_ip()
+        local_port = str(random.randint(45000, 50000))
+
         command = ['python', server_path, directory, local_port]
         server_cmd = subprocess.Popen(
                       command,
@@ -88,11 +92,12 @@ def command_line():
         response = kodi_post(network_file, server, port)
         print(response.text)
 
-        print('\nHit CTRL+C to kill the stream webserver')
+        print('\nHit CTRL+C to kill the stream web server')
 
         try:
             while server_cmd.poll() is None:
                 time.sleep(1)
+            print('It seems like address already in use or web server was closed. Please try again.')
         except KeyboardInterrupt:
             server_cmd.terminate()
             raise
