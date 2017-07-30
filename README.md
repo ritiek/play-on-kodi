@@ -48,7 +48,7 @@ Please make sure the link is an actual path to a video stream which can also be 
 
 - This tool is supposed is supposed to be very minimal way to play local and network files on Kodi. I made this little tool to stop those annoying moments where you are unable to quickly play your local media to Kodi..
 
-- If you believe your idea could comply with this and be interesting at the same time, please [openan issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
+- If you believe your idea could comply with this and be interesting at the same time, please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
 
 ## License
 
