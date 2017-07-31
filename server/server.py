@@ -11,4 +11,4 @@ directory = sys.argv[1]
 local_port = sys.argv[2]
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=local_port)
+    app.run(host='0.0.0.0', port=local_port, threaded=True)
