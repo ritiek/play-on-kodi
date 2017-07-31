@@ -7,6 +7,11 @@ import time
 import argparse
 import sys
 
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.parse import quote
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -43,7 +48,7 @@ def get_local_ip():
 def parse_filepath(filepath):
     splits = filepath.split('/')
     directory = '/'.join(splits[:-1])
-    filename = splits[-1]
+    filename = quote(splits[-1])
     return (filename, directory)
 
 
