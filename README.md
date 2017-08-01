@@ -9,6 +9,16 @@ setup FTP, SMB or anything else.
 git clone https://github.com/ritiek/play-on-kodi
 cd play-on-kodi
 pip install -r requirements.txt
+python playonkodi.py --help
+```
+
+If you want to, you can copy the scripts to PATH if you want a command `playonkodi`. To do so:
+
+```
+sudo cp playonkodi.py /usr/bin/playonkodi
+sudo cp -rf server/ /usr/bin/server/
+sudo chmod -R 755 /usr/bin/playonkodi /usr/bin/server/
+playonkodi --help
 ```
 
 ## Usage
