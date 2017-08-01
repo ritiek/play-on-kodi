@@ -1,7 +1,7 @@
 # play-on-kodi
 
 Stream your local/network content directly on Kodi without having to
-setup FTP, SMB and what not.
+setup FTP, SMB or anything else.
 
 ## Installation
 
