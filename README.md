@@ -3,6 +3,8 @@
 Stream your local/network content directly on Kodi without having to
 setup FTP, SMB or anything else.
 
+I originally made this [tool in python](https://github.com/ritiek/play-on-kodi/tree/python-old) but python would prevent rest of the script from execution as soon as the web server was started. Ultimately, making it a lot harder to put this up on pypi but hey, Node saves the day! 
+
 ## Installation
 
 ```
