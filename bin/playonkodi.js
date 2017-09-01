@@ -12,7 +12,7 @@ var os = require('os');
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.1.4',
+        version: '0.1.5',
         addHelp:true,
         description: 'Stream your local/network content directly on Kodi.',
     });
@@ -88,16 +88,17 @@ var parser = parse_args();
 var args = parser.parseArgs();
 
 const filepath = args.media
+const serverip = args.server
+const serverport = args.port
 
 
-if filepath.contains('://') {
+if (filepath.indexOf('://')) {
+
     console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
     kodi_post(filepath, serverip, serverport);
     console.log('The media content should play now')
 
 } else {
-    const serverip = args.server
-    const serverport = args.port
 
     const localip = get_localip();
     const localport = '15000';
@@ -115,3 +116,4 @@ if filepath.contains('://') {
     console.log('The media content should play now')
 
     console.log('\nHit Ctrl+C to kill the local stream server');
+}
