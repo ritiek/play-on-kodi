@@ -6,33 +6,30 @@ setup FTP, SMB or anything else.
 ## Installation
 
 ```
+npm install -g playonkodi
+```
+
+For superhero devs:
+
+```
 git clone https://github.com/ritiek/play-on-kodi
 cd play-on-kodi
-pip install -r requirements.txt
-python playonkodi.py --help
-```
-
-If you want to, you can copy the scripts to PATH if you want a command `playonkodi`. To do so:
-
-```
-sudo cp playonkodi.py /usr/bin/playonkodi
-sudo cp -rf server/ /usr/bin/server/
-sudo chmod -R 755 /usr/bin/playonkodi /usr/bin/server/
-playonkodi --help
+npm install -g .
 ```
 
 ## Usage
 
 ```
-usage: playonkodi.py [-h] [-s SERVER] [-p PORT] MEDIA
+usage: playonkodi [-h] [-v] [-s SERVER] [-p PORT] MEDIA
 
 Stream your local/network content directly on Kodi.
 
-positional arguments:
-  MEDIA                 path to file containing media
+Positional arguments:
+  MEDIA                 path to media file
 
-optional arguments:
-  -h, --help            show this help message and exit
+Optional arguments:
+  -h, --help            Show this help message and exit.
+  -v, --version         Show program's version number and exit.
   -s SERVER, --server SERVER
                         kodi's local ip address (default: 127.0.0.1)
   -p PORT, --port PORT  kodi's web interface port (default: 8080)
@@ -43,13 +40,13 @@ optional arguments:
 Streaming a local video to Kodi
 
 ```
-python playonkodi.py -s 192.168.0.108 -p 6050 /path/to/local/media/file
+playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
 ```
 
 Streaming a video from the internet to Kodi
 
 ```
-python playonkodi.py -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
+playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
 ```
 
 Please make sure the link is an actual path to a video stream which can also be streamed in players like `VLC` and `MPV`.
