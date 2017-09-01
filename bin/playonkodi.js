@@ -12,7 +12,7 @@ var os = require('os');
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.1.3',
+        version: '0.1.4',
         addHelp:true,
         description: 'Stream your local/network content directly on Kodi.',
     });
@@ -89,23 +89,29 @@ var args = parser.parseArgs();
 
 const filepath = args.media
 
-const serverip = args.server
-const serverport = args.port
 
-const localip = get_localip();
-const localport = '15000';
+if filepath.contains('://') {
+    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
+    kodi_post(network_file, serverip, serverport);
+    console.log('The media content should play now')
 
-var directory = path.dirname(filepath);
-var network_file = 'http://' + localip + ':' + localport + '/' + encodeURIComponent(path.basename(filepath));
+} else {
+    const serverip = args.server
+    const serverport = args.port
 
-console.log('Hosting media content on:')
-console.log(network_file + '\n');
+    const localip = get_localip();
+    const localport = '15000';
 
-serve_directory(directory, localport);
+    var directory = path.dirname(filepath);
+    var network_file = 'http://' + localip + ':' + localport + '/' + encodeURIComponent(path.basename(filepath));
 
-//setTimeout(kodi_post, 5000, network_file, 'localhost', '8050');
-console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
-var response = kodi_post(network_file, serverip, serverport);
-console.log('The media content should play now')
+    console.log('Hosting media content on:')
+    console.log(network_file + '\n');
 
-console.log('\nHit Ctrl+C to kill the local stream server');
+    serve_directory(directory, localport);
+
+    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
+    kodi_post(network_file, serverip, serverport);
+    console.log('The media content should play now')
+
+    console.log('\nHit Ctrl+C to kill the local stream server');
