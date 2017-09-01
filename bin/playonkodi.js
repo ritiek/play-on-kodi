@@ -12,7 +12,7 @@ var os = require('os');
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.1.2',
+        version: '0.1.3',
         addHelp:true,
         description: 'Stream your local/network content directly on Kodi.',
     });
