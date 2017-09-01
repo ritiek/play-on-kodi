@@ -92,13 +92,7 @@ const serverip = args.server
 const serverport = args.port
 
 
-if (filepath.indexOf('://')) {
-
-    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
-    kodi_post(filepath, serverip, serverport);
-    console.log('The media content should play now')
-
-} else {
+if (filepath.indexOf('://') == -1) {
 
     const localip = get_localip();
     const localport = '15000';
@@ -116,4 +110,10 @@ if (filepath.indexOf('://')) {
     console.log('The media content should play now')
 
     console.log('\nHit Ctrl+C to kill the local stream server');
+
+} else {
+
+    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
+    kodi_post(filepath, serverip, serverport);
+    console.log('The media content should play now')
 }
