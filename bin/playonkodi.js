@@ -1,4 +1,4 @@
-'use strict';
+#!/usr/bin/env node
 
 var ArgumentParser = require('argparse').ArgumentParser;
 var http = require('http');
@@ -27,14 +27,14 @@ function parse_args() {
         [ '-s', '--server' ], {
         argumentDefault: '127.0.0.1',
         type: 'string',
-        help: "kodi's local ip address"
+        help: "kodi's local ip address (default: 127.0.0.1)"
         }
     );
     parser.addArgument(
         [ '-p', '--port' ], {
         argumentDefault: 8080,
         type: 'int',
-        help: "kodi's web interface port"
+        help: "kodi's web interface port (default: 8080)"
         }
     );
     return parser;

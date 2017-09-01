@@ -1,0 +1,25 @@
+{
+  "name": "playonkodi",
+  "description": "Stream your local/network content directly on Kodi without FTP, SMB or anything else",
+  "version": "0.1.1",
+  "keywords": [
+    "kodi",
+    "local",
+    "media",
+    "http",
+    "url",
+    "stream"
+  ],
+  "contributors": [
+    "Ritiek Malhotra"
+  ],
+  "license": "MIT",
+  "repository": "ritiek/play-on-kodi",
+  "dependencies": {
+    "argparse": "~1.0.9",
+    "request": "2.81.0"
+  },
+  "bin": {
+    "playonkodi" : "bin/playonkodi.js"
+  }
+}
