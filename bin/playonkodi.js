@@ -92,7 +92,7 @@ const filepath = args.media
 
 if filepath.contains('://') {
     console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
-    kodi_post(network_file, serverip, serverport);
+    kodi_post(filepath, serverip, serverport);
     console.log('The media content should play now')
 
 } else {
