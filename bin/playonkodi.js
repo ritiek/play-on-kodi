@@ -12,7 +12,7 @@ var os = require('os');
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.1.7',
+        version: '0.1.8',
         addHelp:true,
         description: 'Stream your local/network content directly on Kodi.',
     });
@@ -20,19 +20,19 @@ function parse_args() {
         [ 'media' ], {
         metavar: 'MEDIA',
         type: 'string',
-        help: 'path to media file'
+        help: 'Path to media file'
         }
     );
     parser.addArgument(
         [ '-s', '--server' ], {
         type: 'string',
-        help: "kodi's local ip address"
+        help: "Kodi's local ip address"
         }
     );
     parser.addArgument(
         [ '-p', '--port' ], {
         type: 'int',
-        help: "kodi's web interface port"
+        help: "Kodi's web interface port"
         }
     );
     return parser;
