@@ -27,14 +27,14 @@ usage: playonkodi [-h] [-v] [-s SERVER] [-p PORT] MEDIA
 Stream your local/network content directly on Kodi.
 
 Positional arguments:
-  MEDIA                 path to media file
+  MEDIA                 Path to media file
 
 Optional arguments:
   -h, --help            Show this help message and exit.
   -v, --version         Show program's version number and exit.
   -s SERVER, --server SERVER
-                        kodi's local ip address
-  -p PORT, --port PORT  kodi's web interface port
+                        Kodi's local ip address
+  -p PORT, --port PORT  Kodi's web interface port
 ```
 
 ### Examples
