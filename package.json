@@ -1,7 +1,7 @@
 {
   "name": "playonkodi",
   "description": "Stream your local/network content directly on Kodi without FTP, SMB or anything else",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "keywords": [
     "kodi",
     "local",
@@ -19,7 +19,10 @@
     "argparse": "~1.0.9",
     "request": "~2.81.0",
     "finalhandler": "~1.0.4",
-    "serve-static": "~1.12.4"
+    "serve-static": "~1.12.4",
+    "path": "~0.12.7",
+    "os": "~0.1.1",
+    "http": "~0.0.0"
   },
   "bin": {
     "playonkodi" : "bin/playonkodi.js"
