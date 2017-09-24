@@ -12,7 +12,7 @@ var os = require('os');
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.1.10',
+        version: '0.1.11',
         addHelp:true,
         description: 'Stream your local/network content directly on Kodi.',
     });
@@ -35,6 +35,12 @@ function parse_args() {
         help: "Kodi's web interface port"
         }
     );
+    parser.addArgument(
+        [ '-i', '--interface-ip' ], {
+        type: 'string',
+        help: "Interface IP to send to Kodi server"
+        }
+    );
     return parser;
 }
 
@@ -49,7 +55,7 @@ function get_localip() {
                 // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
                 return;
             }
-        localip += iface.address;
+            localip = iface.address;
         });
     });
 
@@ -86,32 +92,36 @@ var parser = parse_args();
 var args = parser.parseArgs();
 
 const filepath = args.media
-const serverip = args.server
-const serverport = args.port
+const server_ip = args.server
+const server_port = args.port
 
 
 if (filepath.indexOf('://') == -1) {
 
-    const localip = get_localip();
-    const localport = '15000';
+    var local_ip = args.interface_ip;
+    if (local_ip == null) {
+        local_ip = get_localip();
+    }
+    const local_port = '15000';
+    console.log(local_ip);
 
     var directory = path.dirname(filepath);
-    var network_file = 'http://' + localip + ':' + localport + '/' + encodeURIComponent(path.basename(filepath));
+    var network_file = 'http://' + local_ip + ':' + local_port + '/' + encodeURIComponent(path.basename(filepath));
 
     console.log('Hosting media content on:')
     console.log(network_file + '\n');
 
-    serve_directory(directory, localport);
+    serve_directory(directory, local_port);
 
-    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
-    kodi_post(network_file, serverip, serverport);
+    console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the hosted URL')
+    kodi_post(network_file, server_ip, server_port);
     console.log('The media content should play now')
 
     console.log('\nHit Ctrl+C to kill the local stream server');
 
 } else {
 
-    console.log('Commanding jsonrpc on ' + serverip + ':' + serverport + ' to listen for media content on the hosted URL')
-    kodi_post(filepath, serverip, serverport);
+    console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the hosted URL')
+    kodi_post(filepath, server_ip, server_port);
     console.log('The media content should play now')
 }
