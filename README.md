@@ -22,7 +22,7 @@ npm install -g .
 ## Usage
 
 ```
-usage: playonkodi [-h] [-v] [-s SERVER] [-p PORT] MEDIA
+usage: playonkodi.js [-h] [-v] -s SERVER -p PORT [-i INTERFACE_IP] MEDIA
 
 Stream your local/network content directly on Kodi.
 
@@ -35,17 +35,19 @@ Optional arguments:
   -s SERVER, --server SERVER
                         Kodi's local ip address
   -p PORT, --port PORT  Kodi's web interface port
+  -i INTERFACE_IP, --interface-ip INTERFACE_IP
+                        [Optional] Interface IP to send to Kodi server
 ```
 
 ### Examples
 
-Streaming a local video to Kodi
+Stream a local video to Kodi
 
 ```
 playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
 ```
 
-Streaming a video from the internet to Kodi
+Stream a video from the internet to Kodi
 
 ```
 playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
@@ -53,11 +55,26 @@ playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
 
 Please make sure the link is an actual path to a video stream which can also be streamed in players like `VLC` and `MPV`.
 
+Send local IP address to Kodi server manually (useful if script cannot find out the correct network interface IP automatically)
+
+```
+playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
+```
+
+## How it works?
+
+- Makes your media content available locally to the devices on the same network.
+
+- Attempts to figure out your PC's local IP address.
+
+- Makes a network request to Kodi server to play the media content that it just hosted on your local network.
+
+
 ## Contributing
 
-- This tool is supposed is supposed to be very minimal way to play local and network files on Kodi. I made it to end those awkward moments when you are unable to quickly play your local media to Kodi while everybody watches you in awe.
+- This tool is supposed is supposed to be very minimal way to play local and network files on Kodi. I made it to quickly be able to your local media content to Kodi server. You don't want to setup FTP/SMB (if not already), add it as a network source on Kodi and locate the media to just make it play.
 
-- If you believe your idea could comply with this aim and be interesting at the same time, please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
+- If you believe your idea is simple and interesting at the same time, please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
 
 ## License
 
