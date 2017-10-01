@@ -90,6 +90,21 @@ function kodi_post(network_file, server, port) {
 }
 
 
+function fetch_time(server, port) {
+    var dataString = '[{"jsonrpc":"2.0","method":"Player.GetProperties","params":[1,["time"]],"id":520}]';
+
+    var options = {
+        url: 'http://' + server + ':' + port + '/jsonrpc?Base',
+        method: 'POST',
+        body: dataString
+    };
+
+    var time = request(options);
+    console.log(time);
+    return time;
+}
+
+
 var parser = parse_args();
 var args = parser.parseArgs();
 
@@ -110,16 +125,20 @@ if (filepath.indexOf('://') == -1) {
     var directory = path.dirname(filepath);
     var network_file = 'http://' + local_ip + ':' + local_port + '/' + encodeURIComponent(path.basename(filepath));
 
-    console.log('Hosting media content on:')
+    console.log('Hosting media content on:');
     console.log(network_file + '\n');
 
     serve_directory(directory, local_port);
 
     console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the hosted URL')
     kodi_post(network_file, server_ip, server_port);
-    console.log('The media content should play now')
+    console.log('The media content should play now');
 
     console.log('\nHit Ctrl+C to kill the local stream server');
+
+    while(true) {
+        var time = fetch_time(server_ip, server_port);
+    }
 
 } else {
 
