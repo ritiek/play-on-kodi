@@ -42,21 +42,18 @@ Optional arguments:
 ### Examples
 
 Stream a local video to Kodi
-
 ```
 playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
 ```
 
 Stream a video from the internet to Kodi
-
 ```
 playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
 ```
 
-Please make sure the link is an actual path to a video stream which can also be streamed in players like `VLC` and `MPV`.
+Please make sure the link is an actual path to a video stream. So, this won't work with our usual YouTube and such URLs.
 
 Send local IP address to Kodi server manually (useful if script cannot find out the correct network interface IP automatically)
-
 ```
 playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
 ```
