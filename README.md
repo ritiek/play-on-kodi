@@ -67,7 +67,7 @@ in the container itself and pass this new container to Kodi.
 **For example:**
 ```
 mkvmerge -o output.mkv input.mp4 subtitles.srt
-playonkodi output.mkv
+playonkodi -s 192.168.0.108 -p 6050 output.mkv
 ```
 
 ## How it works?
