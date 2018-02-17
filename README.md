@@ -6,15 +6,15 @@ setup FTP, SMB or anything else.
 ## Installation
 
 ```
-npm install -g playonkodi
+$ npm install -g playonkodi
 ```
 
 For superhero devs:
 
 ```
-git clone https://github.com/ritiek/play-on-kodi
-cd play-on-kodi
-npm install -g .
+$ git clone https://github.com/ritiek/play-on-kodi
+$ cd play-on-kodi
+$ npm install -g .
 ```
 
 ## Usage
@@ -41,19 +41,19 @@ Optional arguments:
 
 Stream a local video to Kodi
 ```
-playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
+$ playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
 ```
 
 Stream a video from the internet to Kodi
 ```
-playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
+$ playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
 ```
 
 Please make sure the link is an actual path to a video stream. So, this won't work with our usual YouTube and such URLs.
 
 Send local IP address to Kodi server manually (useful if script cannot find out the correct network interface IP automatically)
 ```
-playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
+$ playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
 ```
 
 ## Loading External Subtitles
@@ -62,13 +62,13 @@ There maybe cases where you would want to link your media content with external 
 Due to a limitation in Kodi, we cannot do that for you automatically (check out
 [issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
 
-However you can install `mkvtoolnix` (`sudo apt install mkvtoolnix`) to embed external subtitles
+However you can install `mkvtoolnix` (`$ sudo apt install mkvtoolnix`) to embed external subtitles
 in the container itself and pass this new container to Kodi.
 
 **For example:**
 ```
-mkvmerge -o output.mkv input.mp4 subtitles.srt
-playonkodi -s 192.168.0.108 -p 6050 output.mkv
+$ mkvmerge -o output.mkv input.mp4 subtitles.srt
+$ playonkodi -s 192.168.0.108 -p 6050 output.mkv
 ```
 
 ## How it works?
