@@ -17,6 +17,9 @@ $ cd play-on-kodi
 $ npm install -g .
 ```
 
+Also make sure you have
+[youtube-dl](https://github.com/rg3/youtube-dl/blob/master/README.md#installation) installed.
+
 ## Usage
 
 ```
@@ -46,24 +49,27 @@ $ playonkodi -s 192.168.0.108 -p 6050 /path/to/local/media/file
 
 Stream a video from the internet to Kodi
 ```
-$ playonkodi -s 192.168.0.108 -p 6050 http://raw/path/to/media/file
+$ playonkodi -s 192.168.0.108 -p 6050 http://path/to/media
 ```
 
-Please make sure the link is an actual path to a video stream. So, this won't work with our usual YouTube and such URLs.
+Since this tool now uses the youtube-dl backend to resolve URLs, so you should
+be able to media content from most websites (including YouTube, HotStar, and many more).
+Just pass the URL, and you'll know if it plays on Kodi.
 
-Send local IP address to Kodi server manually (useful if script cannot find out the correct network interface IP automatically)
+Send local IP address to Kodi server manually (useful if script cannot find out
+the correct network interface IP automatically)
 ```
 $ playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
 ```
 
 ## Loading External Subtitles
 
-There maybe cases where you would want to link your media content with external subtitles (.srt, etc.).
-Due to a limitation in Kodi, we cannot do that for you automatically (check out
-[issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
+There maybe cases where you would want to link your local media content with external
+subtitles (.srt, etc.). Due to a limitation in Kodi, we cannot do that for you
+automatically (check out[issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
 
-However you can install `mkvtoolnix` (`$ sudo apt install mkvtoolnix`) to embed external subtitles
-in the container itself and pass this new container to Kodi.
+However you can install `mkvtoolnix` (`$ sudo apt install mkvtoolnix`) to embed
+external subtitles in the container itself and pass this new container to Kodi.
 
 **For example:**
 ```
@@ -73,20 +79,26 @@ $ playonkodi -s 192.168.0.108 -p 6050 output.mkv
 
 ## How it works?
 
-- First of all, it makes your media content available locally to the devices on the same network.
+- For local media, it makes your media content available locally to the devices
+  on the same network. Otherwise it just uses youtube-dl to resolve the passed URL.
 
 - It then attempts to figure out your PC's local IP address.
 
-- And lastly, it makes a network request to Kodi's jsonrpc server to play the media content that
-  it just hosted on your local network.
+- And lastly, it makes a network request to Kodi's jsonrpc server to play the
+  hosted media content.
 
 
 ## Contributing
 
-- This tool is supposed is supposed to be very minimal way to play local and network files on Kodi. I made it to quickly be able to your local media content to Kodi server. You don't want to setup FTP/SMB (if not already), add it as a network source on Kodi and locate the media to just make it play.
+- This tool is supposed is supposed to be very minimal way to play local and
+  network files on Kodi. I made it to quickly be able to your local media content
+  to Kodi server. You don't want to setup FTP/SMB (if not already), add it as a
+  network source on Kodi and locate the media to just make the thing play!
 
-- If you believe your idea is simple and interesting at the same time, please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
+- If you believe your idea is simple and interesting at the same time,
+  please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
+
 
 ## License
 
-`The MIT License`
+`[![License](https://img.shields.io/github/license/ritiek/play-on-kodi.svg)](https://github.com/ritiek/play-on-kodi/blob/master/LICENSE)
