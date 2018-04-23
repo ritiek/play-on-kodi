@@ -8,6 +8,7 @@ var finalhandler = require('finalhandler');
 var serveStatic = require('serve-static');
 var path = require('path');
 var os = require('os');
+var exec = require('child_process').exec;
 
 
 function parse_args() {
@@ -89,6 +90,11 @@ function kodi_post(network_file, server, port) {
     return request(options);
 }
 
+function execute(command, callback){
+    exec(command, function(error, stdout, stderr) {
+        callback(stdout);
+    });
+};
 
 var parser = parse_args();
 var args = parser.parseArgs();
@@ -122,8 +128,11 @@ if (filepath.indexOf('://') == -1) {
     console.log('\nHit Ctrl+C to kill the local stream server');
 
 } else {
-
-    console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the hosted URL')
-    kodi_post(filepath, server_ip, server_port);
-    console.log('The media content should play now')
+    console.log('Resolving URL using youtube-dl');
+    execute('youtube-dl -gf best ' + filepath, function(resolved) {
+        resolved = resolved.replace('\n', '');
+        console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the resolved URL')
+        kodi_post(resolved, server_ip, server_port);
+        console.log('The media content should play now')
+    });
 }
