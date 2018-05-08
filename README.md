@@ -66,7 +66,7 @@ $ playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
 
 There maybe cases where you would want to link your local media content with external
 subtitles (.srt, etc.). Due to a limitation in Kodi, we cannot do that for you
-automatically (check out[issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
+automatically (check out [issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
 
 However you can install `mkvtoolnix` (`$ sudo apt install mkvtoolnix`) to embed
 external subtitles in the container itself and pass this new container to Kodi.
