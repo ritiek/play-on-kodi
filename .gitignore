@@ -1,6 +1,1 @@
-*.pyc
-__pycache__/
-.cache/
-build/
-playonkodi.egg-info/
-dist/
+node_modules/
