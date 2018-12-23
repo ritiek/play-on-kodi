@@ -13,7 +13,7 @@ var exec = require('child_process').exec;
 
 function parse_args() {
     var parser = new ArgumentParser({
-        version: '0.2.0',
+        version: '0.3.1',
         addHelp: true,
         description: 'Stream your local/network content directly on Kodi.',
     });

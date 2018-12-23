@@ -1,7 +1,7 @@
 {
   "name": "playonkodi",
   "description": "Stream your local/network content directly on Kodi without FTP, SMB or anything else",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "keywords": [
     "kodi",
     "local",
