@@ -23,7 +23,7 @@ Also make sure you have
 ## Usage
 
 ```
-usage: playonkodi.js [-h] [-v] -s SERVER -p PORT [-i INTERFACE_IP] MEDIA
+usage: playonkodi.js [-h] [-v] -s SERVER -p PORT [-u USER] [-P PASS] [-i INTERFACE_IP] MEDIA
 
 Stream your local/network content directly on Kodi.
 
@@ -36,6 +36,10 @@ Optional arguments:
   -s SERVER, --server SERVER
                         Kodi's local ip address
   -p PORT, --port PORT  Kodi's web interface port
+  -u USER, --username USER
+                        [Optional] Kodi's web interface username
+  -P PASS, --password PASS
+                        [Optional] Kodi's web interface password
   -i INTERFACE_IP, --interface-ip INTERFACE_IP
                         [Optional] Interface IP to send to Kodi server
 ```

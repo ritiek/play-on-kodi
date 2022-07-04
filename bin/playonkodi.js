@@ -39,6 +39,20 @@ function parse_args() {
         }
     );
     parser.addArgument(
+        [ '-u', '--username' ], {
+        type: 'string',
+        required: false,
+        help: "Kodi's web interface username"
+        }
+    );
+    parser.addArgument(
+        [ '-P', '--password' ], {
+        type: 'string',
+        required: false,
+        help: "Kodi's web interface password"
+        }
+    );
+    parser.addArgument(
         [ '-i', '--interface-ip' ], {
         type: 'string',
         help: "[Optional] Interface IP to send to Kodi server"
@@ -84,7 +98,7 @@ function serve_directory(directory, port) {
 }
 
 
-function kodi_post(network_file, server, port) {
+function kodi_post(network_file, server, port, username, password) {
     console.log('Commanding jsonrpc on ' + server_ip + ':' + server_port + ' to listen for media content on the resolved URL');
     var dataString = '{"id":519,"jsonrpc":"2.0","method":"Player.Open","params":{"item":{"file":"' + network_file + '"}}}';
 
@@ -93,6 +107,13 @@ function kodi_post(network_file, server, port) {
         method: 'POST',
         body: dataString
     };
+
+    if (username || password) {
+      var auth_string = username + ':' + password
+      options.headers = {
+          "Authorization": "Basic " + Buffer.from(auth_string, 'utf-8').toString('base64')
+      }
+    }
 
     console.log('The media content should play now');
     return request(options);
@@ -110,6 +131,8 @@ var args = parser.parseArgs();
 const filepath = args.media
 const server_ip = args.server
 const server_port = args.port
+const server_username = args.username
+const server_password = args.password
 
 
 if (filepath.indexOf('://') == -1) {
@@ -127,7 +150,7 @@ if (filepath.indexOf('://') == -1) {
     console.log(network_file + '\n');
 
     serve_directory(directory, local_port);
-    kodi_post(network_file, server_ip, server_port);
+    kodi_post(network_file, server_ip, server_port, server_username, server_password);
 
     console.log('\nHit Ctrl+C to kill the local stream server');
 
