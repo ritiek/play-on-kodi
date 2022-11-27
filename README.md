@@ -5,12 +5,12 @@ setup FTP, SMB or anything else.
 
 ## Installation
 
+Install the latest release with:
 ```
 $ npm install -g playonkodi
 ```
 
-For superhero devs:
-
+If you plan to hack on the code, you can instead install the development version with:
 ```
 $ git clone https://github.com/ritiek/play-on-kodi
 $ cd play-on-kodi
@@ -69,8 +69,8 @@ $ playonkodi -s 192.168.0.108 -p 6050 -i 192.168.0.105 /path/to/local/media/file
 ## Loading External Subtitles
 
 There maybe cases where you would want to link your local media content with external
-subtitles (.srt, etc.). Due to a limitation in Kodi, we cannot do that for you
-automatically (check out [issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
+subtitles (.srt, etc.). Due to a limitation in Kodi, it cannot be done automatically
+(check out [issue #3](https://github.com/ritiek/play-on-kodi/issues/3)).
 
 However you can install `mkvtoolnix` (`$ sudo apt install mkvtoolnix`) to embed
 external subtitles in the container itself and pass this new container to Kodi.
@@ -80,6 +80,14 @@ external subtitles in the container itself and pass this new container to Kodi.
 $ mkvmerge -o output.mkv input.mp4 subtitles.srt
 $ playonkodi -s 192.168.0.108 -p 6050 output.mkv
 ```
+
+## Why?
+
+This tool is supposed is supposed to be very minimal way to play local and
+network files on Kodi. It was made to quickly be able to play your local media
+content to Kodi server. You don't want to setup FTP/SMB (if not already), add it
+as a network source on Kodi and locate the media to just make the thing play
+
 
 ## How it works?
 
@@ -92,17 +100,7 @@ $ playonkodi -s 192.168.0.108 -p 6050 output.mkv
   hosted media content.
 
 
-## Contributing
 
-- This tool is supposed is supposed to be very minimal way to play local and
-  network files on Kodi. I made it to quickly be able to your local media content
-  to Kodi server. You don't want to setup FTP/SMB (if not already), add it as a
-  network source on Kodi and locate the media to just make the thing play!
-
-- If you believe your idea is simple and interesting at the same time,
-  please [open an issue](https://github.com/ritiek/play-on-kodi/issues) or send a PR!
-
-
-## License
+# License
 
 `[![License](https://img.shields.io/github/license/ritiek/play-on-kodi.svg)](https://github.com/ritiek/play-on-kodi/blob/master/LICENSE)
